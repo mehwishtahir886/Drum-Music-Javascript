@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin:0;
+            padding:0;
+        }
+        .body{
+            height:100vh;
+            background-image: url('images/back.jpg');
+            background-size:100% 100%;
+        }
+h1{
+    margin:0;
+    text-shadow: 2px 2px 3px rgb(155, 41, 75);
+color:rgb(36, 29, 68);
+font-weight: lighter;
+font-size: 5em;
+text-align: center;
+font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+        .items{
+            display:flex;
+           flex-wrap: wrap;
+           justify-content: center;
+        }
+.drum{
+    height:20vh;
+    width:10%;
+    margin:10vh 6vw;
+    background-size: 100% 100%;
+    font-size: 6em;
+    color:white;
+    text-shadow: 4px 4px 3px rgb(64, 53, 117);
+    border:5px solid rgb(155, 41, 75);
+    border-radius:40px;
+    outline: none;
+}
+.q{
+    background-image: url('images/tom1.png');
+}
+.w{
+    background-image: url('images/tom2.png');
+}
+.e{
+    background-image: url('images/tom3.png');
+}
+.r{
+    background-image: url('images/tom4.png');
+}
+.t{
+    background-image: url('images/crash.png');
+}
+.y{
+    background-image: url('images/kick.png');
+}
+.u{
+    background-image: url('images/snare.png');
+}
+.animate{ 
+    opacity: 0.8;
+    border-radius: 50px;
+    transform: scale(1.05);
+    transition: all .5s;
+}
+footer{
+    position:absolute;
+    top:90vh;
+    font-size: 2em;
+    font-family: 'Courier New', Courier, monospace;
+color:rgb(155, 41, 75);
+    font-weight: bolder;
+}
+    </style>
+</head>
+<body>
+    <div class="body">
+<h1>Drum 🧛	 Music</h1>
+<div class="items">
+<button class="drum q">Q</button>
+<button class="drum w">W</button>
+<button class="drum e">E</button>
+<button class="drum r">R</button>
+<button class="drum t">T</button>
+<button class="drum y">Y</button>
+<button class="drum u">U</button>
+<footer>Music 🎶 produced by ...</footer>
+</div>
+</div>
+<script>
+    var allDrums=document.querySelectorAll(".drum")
+    for(var i=0; i<allDrums.length; i++){
+        document.querySelectorAll(".drum")[i].addEventListener("click", function(){
+            var drumText=this.innerHTML;
+            playAudio(drumText.toLowerCase());
+            playAnimation(drumText.toLowerCase());
+        });
+    }
+document.addEventListener("keypress", function(event){
+    playAudio(event.key);
+    playAnimation(event.key);
+})  
+
+function playAudio(key){
+switch(key){
+    case "q":
+    var drum1=new Audio("sounds/tom-1.mp3");
+    drum1.play();
+    break;
+    case "w":
+    var drum2=new Audio("sounds/tom-2.mp3");
+    drum2.play();
+    break;  
+    case "e":
+    var drum3=new Audio("sounds/tom-3.mp3");
+    drum3.play();
+    break; 
+    case "r":
+    var drum4=new Audio("sounds/tom-4.mp3");
+    drum4.play();
+    break;
+    case "t":
+    var drum5=new Audio("sounds/crash.mp3");
+    drum5.play();
+    break;
+    case "y":
+    var drum6=new Audio("sounds/kick-bass.mp3");
+    drum6.play();
+    break;
+    case "u":
+    var drum7=new Audio("sounds/snare.mp3");
+    drum7.play();
+    break;
+    // default:console.log(key);
+}
+}
+
+
+function playAnimation(key){
+var btn=document.querySelector("." + key);
+btn.classList.add('animate');
+setTimeout(function(){
+    btn.classList.remove('animate');    
+}, 200);
+}
+</script>
+</body>
+</html>
